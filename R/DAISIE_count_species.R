@@ -1,7 +1,7 @@
 ### function to count the number of species and colonisation events in
 ## DAISIE_data lists (can be single empirical datasets or simulated datasets)
 
-DAISIE_count_species<- function(islands){
+DAISIE_count_species<- function(islands,sort_clade_sizes=T){
 
 if(length(grep("not_present",islands))==1) {islands<-list(islands)}
 
@@ -41,7 +41,8 @@ for(i in 1:replicates){
     clade_sizes_dist<-btimes+miss_specs
     size_largest_clade<-append(size_largest_clade,max(clade_sizes_dist))
     mean_clade_size<-append(mean_clade_size,round(mean(clade_sizes_dist),2))
-    clade_sizes[i]<-list(clade_sizes_dist)
+    if(sort_clade_sizes==T) {clade_sizes[i]<-list(sort(clade_sizes_dist))} else{
+    clade_sizes[i]<-list(clade_sizes_dist)}
 
 }
 

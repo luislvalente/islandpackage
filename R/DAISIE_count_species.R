@@ -49,8 +49,8 @@ for(i in 1:replicates){
 overall_results<-list(clade_sizes=clade_sizes,
                       size_largest_clade=size_largest_clade,
                       mean_clade_size=mean_clade_size,
-                      total_number_species=number_species,
-                      number_colonists=number_colonists
+                      number_colonisations=number_colonists,
+                      total_number_species=number_species
                       )
 return(overall_results)
 }

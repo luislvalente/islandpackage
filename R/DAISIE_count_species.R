@@ -1,6 +1,35 @@
-### function to count the number of species and colonisation events in
-## DAISIE_data lists (can be single empirical datasets or simulated datasets)
-
+#' Count number of species in DAISIE datalist or simulated data .
+#'
+#' Calculates various island diversity metrics.
+#'
+#' @param islands Island datalist or simulated data in DAISIE datalist format.
+#' Can be a single island (empirical data) generated with DAISIE_dataprep or
+#' DAISIEprep. Can also be simulated data generated with DAISIE_sim function.
+#' @param sort_clade_sizes Default sort_clade_sizes=T outputs clade sizes
+#' sorted in ascending order of number of species. sort_clade_sizes=F outputs
+#' clade sizes in the same order as they appear in the input datalist.
+#' @return List
+#' @author Luis Valente
+#' @seealso \code{\link{DAISIE_dataprep}},
+#' \code{\link{DAISIE_plot_island}}
+#' @keywords models
+#' @return The output is a list containing one island, or, in the case of simulations
+#' with multiple replicates, it is a list composed of individual lists for each island
+#' which can be called using [[i]]. The output for each island contains:
+#' \item{clade_sizes_sorted}{ The total number of species in each island clade
+#'  (including missing species). If option sort_clade_sizes = T, the vector will
+#'  be sorted by increasing number of species. If option sort_clade_sizes = F
+#'  the vector will be given in the same order as in the datalist.
+#' \item{size_largest_clade}{ The total number of species in the largest island clade.}
+#' \item{mean_clade_size}{ Mean clade size (average of all island clades)}
+#' \item{number_colonisations}{ The total number of colonisations (clades) on the island.}
+#' \item{total_number_species}{ The total number of species on the island. These are the extant
+#'  species at present,including missing species; in case of simulations the number
+#'  of species present on the island at the end of the simulation. }
+#'  @examples
+#'  data("NewZealand_birds_datalist")
+#'  DAISIE_count_species(NewZealand_birds_datalist)
+#' @export DAISIE_count_species
 DAISIE_count_species<- function(islands,sort_clade_sizes=T){
 
 if(length(grep("not_present",islands))==1) {islands<-list(islands)}

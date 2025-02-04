@@ -17,6 +17,7 @@ myAICc <- function(LogLik,k,n){
 }
 
 # BIC Bayesian Information Criterion
+## Example usage: myBIC(c(-100.1,-102,-105.2),c(4,5,3),1000)
 myBIC <- function(LogLik,k,n){
   bic <- -2*LogLik+k*(log(n)+log(2*pi))
   return(bic)
@@ -24,6 +25,7 @@ myBIC <- function(LogLik,k,n){
 
 
 # IC weights
+## Example usage: ICweights(c(-100.1,-102,-105.2),c(4,5,3),1000,"AIC")
 ICweights <- function(LogLik,k,n,IC_type){
   if(IC_type == 'AIC'){
     IC <- myAIC(LogLik,k)
